@@ -18,25 +18,28 @@
       - FastLED 
       - PubSubClient
       - ArduinoJSON
+
+2018/03/01  converting to Esp32 board. 
+
 */
 
 #include <ArduinoJson.h>
-#include <ESP8266WiFi.h>
+#include <WiFi.h>
 #include <PubSubClient.h>
 #include "FastLED.h"
-#include <ESP8266mDNS.h>
+#include <ESPmDNS.h>
 #include <WiFiUdp.h>
 #include <ArduinoOTA.h>
 
-
+#include "secrets.h"
 
 /************ WIFI and MQTT Information (CHANGE THESE FOR YOUR SETUP) ******************/
-const char* ssid = "YourSSID"; //type your WIFI information inside the quotes
-const char* password = "YourWIFIpassword";
-const char* mqtt_server = "your.MQTT.server.ip";
-const char* mqtt_username = "yourMQTTusername";
-const char* mqtt_password = "yourMQTTpassword";
-const int mqtt_port = 1883;
+extern const char* ssid = Secretssid; //type your WIFI information inside the quotes
+extern const char* password = SecretWifipassword;
+extern const char* mqtt_server = Secretmqtt_server;
+extern const char* mqtt_username = Secretmqtt_username;
+extern const char* mqtt_password = Secretmqtt_password;
+extern const int mqtt_port = Secretmqtt_port;
 
 
 
@@ -57,6 +60,8 @@ const char* effect = "solid";
 String effectString = "solid";
 String oldeffectString = "solid";
 
+
+int MILLION = 100000;
 
 
 /****************************************FOR JSON***************************************/
